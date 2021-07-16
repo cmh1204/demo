@@ -1,0 +1,24 @@
+
+//导入共享库
+@Library('mylib') _     
+
+//加载类文件
+def mytools = new org.devops.tools()
+
+
+pipeline {
+
+    agent any 
+    stages {
+        stage("build"){
+            steps{
+                script{
+                    //使用共享库中的方法
+                    jobname = mytools.getname("cmh")
+                    println(jobname)
+                }
+            }
+        }
+    }
+
+}
